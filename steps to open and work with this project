@@ -1,0 +1,19 @@
+open anaconda navigator
+select ibm_project environment(your environment)
+launch pycharm from it
+open the streeamlit_application.py file then inside the terminal
+in the terminal:
+
+1)type> cd streamlit_webapp(folder name)  (inside this folder the code is present)
+2)type> streamlit run streeamlit_application.py (name of the file)
+
+
+
+note:
+all the remaining folders like .idea,.vscode,.pycache etc folders will be formed during the process ,to integrate with that env folders or as an cache folders,there is no need to create them sepearatly
+
+
+
+
+note::
+1)object_detection_video_image.py file consists video and image codes for loading and running main code,this is imported into the streeamlit_application.py file

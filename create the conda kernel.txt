@@ -1,0 +1,24 @@
+process for new project creation
+create the conda new project environment with the new kernel and install tensorflow gpu (done)(https://www.techentice.com/how-to-make-jupyter-notebook-to-run-on-gpu/)
+install the super gradients 
+install the pytorch gpu respective to the already existing cuda and cudnn libraries from the website
+
+
+
+
+
+
+>> to work with python in pycahrm like normal procedure is
+1) open anaconda navigator
+2) select the project env
+3) launch pycharm (now pycharm is inside the anaconda packages , note:: ## if you open pycharm from outside the anaconda navigator like directly, then the files may not have the packages that were installed in that env)
+
+
+
+note:
+1) never install super_gradients with 3.0.1 version because it is not compatible with the torch >2.0.1+cu118
+*********
+********* 2) if torch version is down for unknown reason then delete that torch and reinstall it
+
+3) the requirements.txt file that was created just before writing the streamlit_web code, to install the streamlit application in the terminal ,not required to run everytime (just during the first is enough)
+>i.e pip install -r requirements.txt
