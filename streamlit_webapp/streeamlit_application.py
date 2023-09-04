@@ -3,7 +3,10 @@ from PIL import Image
 from object_detection_video_image import *
 import tempfile
 def main():
+    st.title("SafeZone: Real-time Video Analytics for Industrial Safety")
     st.title("OBJECT DETECTION USING YOLO-NAS CUSTOM DATASET")
+    st.markdown("This project aims to develop a real-time detection system using the YOLO-NAS algorithm, which is a novel approach to object detection that combines the advantages of You Only Look Once (YOLO) and Neural Architecture Search (NAS). The system can process video streams and identify objects of interest based on their color, shape, and size. The system can also alert the user via email when it detects danger red coloured boxes in the video, which may indicate potential threats or hazards. The system is implemented as a web application using Streamlit, which is a framework for creating interactive data applications with Python. The web application allows the user to upload or stream videos, adjust the detection parameters, and view the results in real time. The web application also displays the email alerts sent by the system and provides a summary of the detected objects. The project demonstrates the feasibility and effectiveness of using YOLO-NAS for real-time detection and alerting tasks.")
+
     st.sidebar.title("Settings")
     st.sidebar.subheader("parameters")
     st.markdown(
@@ -21,7 +24,7 @@ def main():
 
     app_mode = st.sidebar.selectbox('Choose the App Mode', ['About App','Run on Image','Run on Video'])
     if app_mode == 'About App':
-        st.markdown("ravi is always great as usual")
+        st.markdown("")
         st.markdown('In This Project I am using ***Yolo-Nas*** with custom dataset after training the model for 11 hours to do Object Detection on Images and Videos and we are using  Stream Lit as an webapp to create a GUI ')
         st.markdown(
             """
@@ -112,11 +115,7 @@ def main():
             st.markdown("***HEIGHT***")
             kpi3_text=st.markdown("0")
         st.markdown("<hr/",unsafe_allow_html = True)
-        video_detection(temfile.name,kpi1_text,kpi2_text,kpi3_text,stframe)
-
-
-
-
+        video_detection(temfile.name,kpi1_text,kpi2_text,kpi3_text,stframe,st)
 
 
 

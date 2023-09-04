@@ -4,6 +4,7 @@ from super_gradients.training  import models
 import numpy as np
 import math
 import time
+from tosendmail import *
 
 def image_detection(image,confidence,st):
 
@@ -24,11 +25,19 @@ def image_detection(image,confidence,st):
         classnamee= int(cls)
         class_name = classnames[classnamee]
         confid= math.ceil((confidence*100))/100 ##Round a number upward to its nearest integer
-        label = f'{class_name}{confid}'
+        label = f'{class_name} {confid}'
         if class_name in ['Fall Detected', 'Fire', 'Smoke']:
             cv2.rectangle(image,(x1,y1),(x2,y2),(255,0,0),3) # cv2.rectangle takes input for blue,green,red not red,green,blue
             st.text("THIS IS THE DANGER SIGNAL :")
+
             st.text(class_name)
+
+
+
+            message = create_message('HEAD',"ravitejaashwala2003@gmail.com",'!!!!DANGER ALERT!!!!',"!!!!!!!!!****DANGER CLASS DETECTED, CHECK THE AFFECTED AREA *****!!!!!!!!!!")
+            print(send_message(service=service, user_id='me', message=message))
+
+
 
         else:
             cv2.rectangle(image,(x1,y1),(x2,y2),(0,255,0),3)
@@ -43,7 +52,7 @@ def image_detection(image,confidence,st):
 
 
 
-def video_detection(video,kpi1_text,kpi2_text,kpi3_text,stframe):
+def video_detection(video,kpi1_text,kpi2_text,kpi3_text,stframe,st):
 
     j = cv2.VideoCapture(video)
 
@@ -81,9 +90,17 @@ def video_detection(video,kpi1_text,kpi2_text,kpi3_text,stframe):
                 confid = math.ceil((confidence * 100)) / 100  ##Round a number upward to its nearest integer
                 label = f'{class_name}{confid}'
                 print("FRAME COUNT ", count, x1, y1, x2, y2)
+
+                danger_zone_detected = 0
                 if class_name in ['Fall Detected', 'Fire', 'Smoke']:
-                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255),
-                                  3)  # cv2.rectangle takes input for blue,green,red not red,green,blue
+                    danger_zone_detected+=1
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255),3)  # cv2.rectangle takes input for blue,green,red not red,green,blue
+                    if danger_zone_detected == 1:
+                        st.text("THIS IS THE DANGER SIGNAL :")
+                        st.text(class_name)
+                        message = create_message('HEAD',"ravitejaashwala2003@gmail.com", '!!!!DANGER ALERT!!!!'," !!!****DANGER CLASS DETECTED, CHECK THE AFFECTED AREA ***!!!")
+                        print(send_message(service=service, user_id='me', message=message))
+
                 else:
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 3)
                 t_size = cv2.getTextSize(label, 0, fontScale=1, thickness=3)[0]
